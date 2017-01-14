@@ -68,12 +68,12 @@ class ga_worker:
     def buy_house1(self,gene):
         '''
         0->don't buy
-        1->don't buy if the cost of the house is more than 15% of bank
-        2->don't buy if the cost of the house is more than 30% of bank
-        3->don't buy if the cost of the house is more than 45% of bank
-        4->don't buy if the cost of the house is more than 60% of bank
-        5->don't buy if the cost of the house is more than 75% of bank
-        6->don't buy if the cost of the house is more than 90% of bank
+        1->don't buy until cost is 15% of bank
+        2->don't buy until cost is 30% of bank
+        3->don't buy until cost is 45% of bank
+        4->don't buy until cost is 60% of bank
+        5->don't buy until cost is 75% of bank
+        6->don't buy until cost is 90% of bank
         '''
         return gene
     def buy_house2(self,gene):
@@ -153,4 +153,44 @@ class ga_worker:
         2->sell sets until minimum is reached
         3->sell 2 sets until minimum is reached
         4->sell 1 set and 1 non-set until minimum is reached
+        5->sell 3 sets until minimum is reached
+        6->sell 2 set and 2 non-set until minimum is reached
         '''
+        return gene
+
+    def prioritize_sell(self, gene):
+        '''
+        0->doesn't sell
+        1->sells using 1st method
+        2->sells using 2nd method
+        3->sells using 3rd method
+        4->sells using combo of 1&2
+        5->sells using combo of 2&3
+        6->sells using combo of 1&3
+        '''
+        if gene == 0:
+            return 0, 0
+        elif gene == 1:
+            return self.sell1(gene), 0
+        elif gene == 2:
+            return self.sell2(gene), 0
+        elif gene == 3:
+            return self.sell3(gene), 0
+        elif gene == 4:
+            return self.sell1(gene), self.sell2(gene)
+        elif gene == 5:
+            return self.sell2(gene), self.sell3(gene)
+        elif gene == 6:
+            return self.sell1(gene), self.sell3(gene)
+
+    def risk(self,gene):
+        '''
+        0->always keep $300 at all times
+        1->always keep $250
+        2->always keep $200
+        3->always keep $150
+        4->always keep $100
+        5->always keep $50
+        6->ok with $0
+        '''
+        return gene
