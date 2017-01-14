@@ -3,13 +3,13 @@ from card import property_card
 from card import special_card
 from player import player
 
+
 class GameBoard:
     def __init__(self):
         self.cards = []  # This board is an array of all the cards
         self.open_file()
         self.iterate_file()
         self.players = []
-
 
     def open_file(self):
         self.file = open("Properties.txt", "r")  # opens the readable file
@@ -54,14 +54,6 @@ class GameBoard:
                 player.go_to_jail()
 
 
-def smallest(arr):
-    small = 0
-    for i in range (1, 40):
-        if (arr[small] > arr[i]):
-            small = i
-    return small
-
-
 if __name__ == '__main__':
     obj = GameBoard()
     player1 = Player(1500)
@@ -72,6 +64,6 @@ if __name__ == '__main__':
     print()
     print()
     print(player1.spaces_landed_on)
-    print(smallest(player1.spaces_landed_on))
+    print(min(player1.spaces_landed_on))
     print(obj.cards[29].get_name ())
 
