@@ -1,5 +1,3 @@
-
-
 class ga_worker:
     def __init__(self):
         self._genes = [0]*40
@@ -16,6 +14,13 @@ class ga_worker:
         5->buy prop if it is one or two space away from corner
         6->buy prop if it is three or four space away from corner
         '''
+
+        if gene == 0:
+            return 0
+        elif gene == 1:
+            if self.player.get_current_space() % 10 >= 8:
+                pass
+
         return gene
     def buy_property2(self,gene):
         '''
@@ -75,6 +80,11 @@ class ga_worker:
         5->don't buy until cost is 75% of bank
         6->don't buy until cost is 90% of bank
         '''
+        if gene == 0:
+            return 0
+        elif gene == 1:
+            pass
+
         return gene
     def buy_house2(self,gene):
         '''
