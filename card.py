@@ -25,8 +25,8 @@ class base_card:
 
 
 class property_card(base_card):
-    def __init__(self,group='',name='',cost=0,rent=0,house_rents=[],num_houses=0,hotel=0,mortgage_value=0,house_cost=0,hotel_cost=0):
-        super().__init__(group,name,cost,rent,house_rents,num_houses)
+    def __init__(self,group='',name='',cost=0,house_rents=[],num_houses=0,hotel=0,mortgage_value=0,house_cost=0,hotel_cost=0):
+        super().__init__(group,name,cost,house_rents,num_houses)
         self._hotel = hotel
         self._mortgage_value = mortgage_value
         self._house_cost = house_cost
