@@ -34,7 +34,7 @@ class player():
             if self.current_space > 39:
                 self.money += 200
                 self.current_space = self.current_space % 40
-            self.process_property()
+            self.process(self.current_space)
 
     def move(self):
         if self.in_jail:
