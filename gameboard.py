@@ -6,9 +6,10 @@ from player import player
 
 class gameboard:
     def __init__(self):
-        self.board = []  # This board is an array of all the cards
+        self.cards = []  # This board is an array of all the cards
         self.open_file()
         self.iterate_file()
+        self.players = []
 
     def open_file(self):
         self.file = open("Properties.txt", "r")  # opens the readable file
@@ -30,8 +31,15 @@ class gameboard:
         elif (arr[0] == "Utility"):
             newcard = base_card(arr[1], 150, [4, 10], 0)
 
-        self.board.append(newcard)
+        self.cards.append(newcard)
         # print(newcard.get_name())
+
+    def compute_round(self):
+        for player in self.players:
+            player.move()
+
+            player.process(self.cards[player.get_current_space()])
+
 
 
 if __name__ == '__main__':

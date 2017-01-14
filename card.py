@@ -1,3 +1,5 @@
+from player import player
+
 class base_card:
     def __init__(self,name='',cost=0,house_rents=[],num_houses=0):
         #self._group = group
@@ -5,6 +7,7 @@ class base_card:
         self._name = name
         self._house_costs = house_rents
         self._num_houses = num_houses
+        self.player_owner = None
 
     def get_group(self):
         return self._group
