@@ -1,0 +1,16 @@
+Advance 39
+Pay -200
+Pay 50
+Pay -50
+Get_Out_Of_Jail_Free
+Go_To 9
+Pay -50
+Pay -100
+Pay -20
+Pay -100
+Pay 100
+Pay 150
+Pay -25
+House_Thing
+Pay -10
+Pay 100
