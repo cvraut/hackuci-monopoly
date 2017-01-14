@@ -58,6 +58,7 @@ class player():
         #print(self.current_space)
         self.spaces_landed_on[self.current_space] += 1
 
+
     def process(self, card):
         if card.get_name() =="Go":
             self.money += 200

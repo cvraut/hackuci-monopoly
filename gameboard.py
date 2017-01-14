@@ -7,19 +7,18 @@ from player import player
 class gameboard:
     def __init__(self):
         self.cards = []  # This board is an array of all the cards
-        self.open_file()
+        self._card_file = open('Properties.txt', 'r')
         self.iterate_file()
         self.players = []
 
-    def open_file(self):
-        self.file = open("Properties.txt", "r")  # opens the readable file
 
     def iterate_file(self):
-        for i in range(0, 40):
-            self.read_string()  # processes the string
+        for line in self._card_file:
+            self.read_string(line)  # processes the string
 
-    def read_string(self):
-        arr = self.file.readline().rstrip().split(" ")  # split into different parts
+
+    def read_string(self, line):
+        arr = line.rstrip().split(" ")  # split into different parts
         if (arr[0] == "Special"):
             newcard = special_card(arr[1])
         elif (arr[0] == "Property"):
@@ -34,6 +33,7 @@ class gameboard:
         self.cards.append(newcard)
         # print(newcard.get_name())
 
+		
     def compute_round(self):
         for player in self.players:
             player.move()
