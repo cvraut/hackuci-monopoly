@@ -5,19 +5,18 @@ from card import special_card
 
 class gameboard:
     def __init__(self):
-        self.board = [] # This board is an array of all the cards
-        self.open_file()
-        self.iterate_file()
-        
-    def open_file (self):
-        self.file = open ("Property.txt", "r") # opens the readable file
-    
-    def iterate_file (self):
-        for i in range (0, 40):
-            self.read_string () # processes the string
+        self._cards = [] # This board is an array of all the cards
+        self._file = open('Property.txt', 'r')
+        self._iterate_file()
 
-    def read_string (self):
-        arr = self.file.readline().rstrip().split(" ") # split into different parts
+    
+    def _iterate_file(self):
+        for line in self._file:
+            self.read_string(line) # processes the string
+
+
+    def read_string(self, line):
+        arr = line.rstrip().split(" ") # split into different parts
         if (arr[0] == "Special"):
             newcard = special_card (arr[1])
             print (newcard.get_name())
@@ -27,16 +26,15 @@ class gameboard:
             print (newcard.get_hotel())
             print (newcard.get_mortgage_value())
             print(newcard.get_total_rent())
-            
         elif (arr[0] == "Railroad"):
             newcard = base_card(arr[1], 200, [25,50,100,200], 0)
             print(newcard.get_name())
             print(newcard.get_total_rent())
-        elif (arr[0] == "Utility"):
+        else:
             newcard = base_card(arr[1], 150, [4,10], 0)
             print(newcard.get_name())
             print(newcard.get_total_rent())
-        self.board.append(newcard)
+        self._cards.append(newcard)
         #print(newcard.get_name())
         
 
