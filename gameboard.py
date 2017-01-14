@@ -6,7 +6,7 @@ from card import special_card
 class gameboard:
     def __init__(self):
         self._board = [] # This board is an array of all the cards
-        self._file = open('Property.txt', 'r')
+        self._file = open('Properties.txt', 'r')
         self.iterate_file()
         
 
