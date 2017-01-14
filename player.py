@@ -28,17 +28,25 @@ class player():
         self.properties_owned.append(property)
         self.money -= property.get_cost()
 
+    def walk(self,dist):
+        if not self.in_jail:
+            self.current_space += dist
+            if self.current_space > 39:
+                self.money += 200
+                self.current_space = self.current_space % 40
+            self.process_property()
+
     def move(self):
         if self.in_jail:
             self.turns_in_jail += 1
             die1, die2 = self.roll()
             if die1 == die2:
-                self.current_space = (self.current_space + die1+die2)
                 self.in_jail = False
+                self.walk(die1+die2)
             elif self.turns_in_jail == 3:
                 self.money -= 50
-                self.current_space = (self.current_space + die1 + die2)
                 self.in_jail = False
+                self.walk(die1 + die2)
         else:
             die1,die2 = self.roll()
             i = 0 # counter for number of double rolls
