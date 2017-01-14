@@ -1,6 +1,6 @@
-Advance_To 39
-Advance_To 23
-Advance_To 10
+Advance 39
+Advance 23
+Advance 10
 Advance_To_Nearest Utility
 Advance_To_Nearest Railroad
 Advance_To_Nearest Railroad
@@ -10,7 +10,7 @@ Go_Back 3
 Go_To 9
 House_Thing
 Pay 15
-Advance_To 5
-Advance_To_38
+Advance 5
+Advance 38
 Pay x
 Pay -150
