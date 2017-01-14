@@ -1,7 +1,7 @@
 Advance 39
 Pay -200
 Pay 50
-Pay -50
+Pay -45
 Get_Out_Of_Jail_Free
 Go_To 9
 Pay -50
