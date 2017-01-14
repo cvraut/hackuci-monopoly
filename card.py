@@ -68,15 +68,15 @@ class SpecialDeck:
 		
 		self._chest.append(SpecialCard(0, 'Advance to Go'))
 		self._chest.append(SpecialCard(1, 'Go to jail'))
-		self._chest.append(SpecialCard(2, 'Bank error in your favour'))
-		self._chest.append(SpecialCard(2, 'Doctors fee pay $50'))
+		self._chest.append(SpecialCard(2, 200))
+		self._chest.append(SpecialCard(2, 50))
 		self._chest.append(SpecialCard(2, 'Stock sale collect $50'))
 		self._chest.append(SpecialCard(2, 'Get out of jail'))
 		self._chest.append(SpecialCard(2, 'Collect $50 from each player'))
 		self._chest.append(SpecialCard(2, 'Xmas fund colect $100'))
 		self._chest.append(SpecialCard(2, 'Income tax refund collect $20'))
 		self._chest.append(SpecialCard(2, 'Collect $10 from each player for your birthday'))
-		self._chest.append(SpecialCard(2, 'Life inusrance matures-- collect $100'))
+		self._chest.append(SpecialCard(2, 'Life insurance matures-- collect $100'))
 		self._chest.append(SpecialCard(2, 'Pay hospital fees of $100'))
 		self._chest.append(SpecialCard(2, 'Pay school fees of $150'))
 		self._chest.append(SpecialCard(2, 'Receive $25 consultancy fee'))
@@ -84,12 +84,12 @@ class SpecialDeck:
 		self._chest.append(SpecialCard(2, 'You inherit $100'))
 	
 	
-	
-	def get_chance(self, index):
+	'''
+	def get_chance(self, index, player):
 		if self._chance[index] == 0:
-			self._player_owner.advance_to_go()
+			player.advance_to_go()
 		elif self._chance[index] == 1:
-			self._player_owner.go_to_jail()
+			player_owner.go_to_jail()
 		#add in other cases
 			
 	def get_chest(self, index):
@@ -97,9 +97,11 @@ class SpecialDeck:
 			self._player_owner.advance_to_go()
 		elif self._chest[index] == 1:
 			self._player_owner.go_to_jail()
+
 		# add in other cases
-	
-		
+	This is moved into player
+    
+		'''
 class SpecialCard:
 	def __init__(self, type, label):
 		self._type = type

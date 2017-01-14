@@ -92,12 +92,24 @@ class Player:
             card.get_owner().money += card.get_rents()[card.get_num_houses()]
 
 
+
     def draw_chance_card(self):
-        print ("dummy")
+        if self._chance[index] == 0:
+            self.advance_to_go()
+        elif self._chance[index] == 1:
+            self.go_to_jail()
+        #add in other cases
     
 	
 	def draw_community_chest_card(self):
-        print("dummy")
+        if self._chest[index] == 0:
+            self.advance_to_go()
+        elif self._chest[index] == 1:
+            self..go_to_jail()
+
+    # add in other cases
+
+
 
 
     def bankrupt(self):
