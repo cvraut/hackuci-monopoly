@@ -5,7 +5,6 @@ from card import special_card
 
 class gameboard:
     def __init__(self):
-<<<<<<< HEAD
         self._board = [] # This board is an array of all the cards
         self._file = open('Property.txt', 'r')
         self.iterate_file()
@@ -28,7 +27,6 @@ class gameboard:
             newcard = base_card("", arr[1], 150, [4,10], 0)
         self._board.append(newcard)
         print(newcard.get_name())
-=======
         self._cards = [] # This board is an array of all the cards
         self._file = open('Property.txt', 'r')
         self._iterate_file()
@@ -61,7 +59,6 @@ class gameboard:
         self._cards.append(newcard)
         #print(newcard.get_name())
         
->>>>>>> de565b2859a09e889763e365e3d1cd3de614b5ec
 
 if __name__ == '__main__':
     obj = gameboard()
