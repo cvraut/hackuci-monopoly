@@ -43,17 +43,17 @@ class player():
             die1,die2 = self.roll()
             i = 0 # counter for number of double rolls
             while (die1 == die2 and i < 3):
-                self.current_space = (self.current_space + spaces)
+                self.current_space = (self.current_space + die1+die2)
                 i+=1
                 die1,die2 = self.roll()
             if (i == 3):
                 self.go_to_jail()
             else:
-                self.current_space = (self.current_space + spaces)
+                self.current_space = (self.current_space + die1+die2)
 
         if self.current_space > 39:
             self.money += 200
-            self.current_space % 40
+            self.current_space = self.current_space% 40
 
         #print(self.current_space)
         self.spaces_landed_on[self.current_space] += 1
@@ -65,11 +65,11 @@ class player():
         elif card.get_name() == "Go_To_Jail":
             self.go_to_jail()
         elif card.get_name() == "Chance":
-            draw_chance_card()
+            self.draw_chance_card()
         elif card.get_name() == "Community_Chest":
-            draw_community_chest_card()
+            self.draw_community_chest_card()
         else:
-            process_property_card()
+            self.process_property_card()
 
 
     def go_to_jail (self):
@@ -77,3 +77,9 @@ class player():
         self.in_jail = True
 
     def process_property_card(self):
+        print ("dummy")
+
+    def draw_chance_card(self):
+        print ("dummy")
+    def draw_community_chest_card(self):
+        print("dummy")
