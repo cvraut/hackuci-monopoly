@@ -35,6 +35,6 @@ Property Pennsylvania_Avenue Green 28 150 450 1000 1200 1400 320 200
 Railroad Short_Line
 Special Chance
 Property Park_Place Blue 35 175 500 1100 1300 1500 350 200
-Special Luxury Tax
+Special Luxury_Tax
 Property Boardwalk Blue 50 100 200 600 1400 1700 2000 400 200
 Special Go

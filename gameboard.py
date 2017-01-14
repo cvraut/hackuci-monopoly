@@ -7,18 +7,19 @@ from player import player
 class gameboard:
     def __init__(self):
         self.cards = []  # This board is an array of all the cards
-        self._card_file = open('Properties.txt', 'r')
+        self.open_file()
         self.iterate_file()
         self.players = []
 
+    def open_file(self):
+        self.file = open("Properties.txt", "r")  # opens the readable file
 
     def iterate_file(self):
-        for line in self._card_file:
-            self.read_string(line)  # processes the string
+        for i in range(0, 40):
+            self.read_string()  # processes the string
 
-
-    def read_string(self, line):
-        arr = line.rstrip().split(" ")  # split into different parts
+    def read_string(self):
+        arr = self.file.readline().rstrip().split(" ")  # split into different parts
         if (arr[0] == "Special"):
             newcard = special_card(arr[1])
         elif (arr[0] == "Property"):
@@ -33,22 +34,43 @@ class gameboard:
         self.cards.append(newcard)
         # print(newcard.get_name())
 
-		
     def compute_round(self):
         for player in self.players:
-            player.move()
 
+            boolbefore = player.in_jail
+            die1, die2 = player.move()
             player.process(self.cards[player.get_current_space()])
+            boolafter = player.in_jail
+            i = 0  # counter for number of double rolls
+            while (i < 3 and die1 == die2 and boolafter == boolbefore):
+                die1, die2 = player.move()
+                player.process(self.cards[player.get_current_space()])
+                i+=1
+                boolafter = player.in_jail
+            if (i == 3):
+                player.go_to_jail()
 
 
+
+
+
+def smallest(arr):
+    small = 0
+    for i in range (1, 40):
+        if (arr[small] > arr[i]):
+            small = i
+    return small
 
 if __name__ == '__main__':
     obj = gameboard()
     player1 = player(1500)
+    obj.players.append(player1)
     for i in range(500000):
-       player1.move()
-       print(player1.get_current_space())
+       obj.compute_round()
 
     print()
     print()
     print(player1.spaces_landed_on)
+    print(smallest(player1.spaces_landed_on))
+    print(obj.cards[29].get_name ())
+
