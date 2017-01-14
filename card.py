@@ -8,7 +8,7 @@ class base_card:
         self._num_houses = num_houses
 
     def get_group(self):
-         return self._group
+        return self._group
     def get_cost(self):
         return self._cost
     def get_name(self):
@@ -22,6 +22,8 @@ class base_card:
     def get_house_rents(self):
         return self._house_rents
 
+    def set_num_houses(self,num):
+        self._num_houses = num
 
 
 class property_card(base_card):
@@ -39,6 +41,9 @@ class property_card(base_card):
         return self._house_cost
     def get_hotel_cost(self):
         return self._hotel_cost
+
+    def set_hotel(self,hotel):
+        self._hotel = hotel
 
 
 
