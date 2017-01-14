@@ -5,14 +5,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 
-
-class make_graph:
-
-
+class MakeGraph:
     def __init__(self, x_vals=[], y_vals=[],y_label='',x_label=''):
         self._figure_num=0
         if x_label and x_vals and y_label and y_vals:
             self.draw_figure(x_vals,y_vals,y_label,x_label)
+
 
     def draw_figure(self,x_vals=[], y_vals=[],y_label='',x_label=''):
         self._figure_num+=1

@@ -3,20 +3,22 @@ from card import property_card
 from card import special_card
 from player import player
 
-
-class gameboard:
+class GameBoard:
     def __init__(self):
         self.cards = []  # This board is an array of all the cards
         self.open_file()
         self.iterate_file()
         self.players = []
 
+
     def open_file(self):
         self.file = open("Properties.txt", "r")  # opens the readable file
 
+		
     def iterate_file(self):
         for i in range(0, 40):
             self.read_string()  # processes the string
+
 
     def read_string(self):
         arr = self.file.readline().rstrip().split(" ")  # split into different parts
@@ -33,6 +35,7 @@ class gameboard:
 
         self.cards.append(newcard)
         # print(newcard.get_name())
+
 
     def compute_round(self):
         for player in self.players:
@@ -51,9 +54,6 @@ class gameboard:
                 player.go_to_jail()
 
 
-
-
-
 def smallest(arr):
     small = 0
     for i in range (1, 40):
@@ -61,9 +61,10 @@ def smallest(arr):
             small = i
     return small
 
+
 if __name__ == '__main__':
-    obj = gameboard()
-    player1 = player(1500)
+    obj = GameBoard()
+    player1 = Player(1500)
     obj.players.append(player1)
     for i in range(500000):
        obj.compute_round()

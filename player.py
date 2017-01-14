@@ -1,6 +1,6 @@
 import random
 
-class player():
+class Player:
     def __init__(self, money):
         self.properties_owned = []
         self.money=money
@@ -9,24 +9,31 @@ class player():
         self.in_jail = False
         self.turns_in_jail = 0
 
+
     def get_money(self):
         return self.money
+
 
     def get_properties_owned(self):
         return self.properties_owned
 
+
     def get_current_space(self):
         return self.current_space
+
 
     def roll(self):
         return random.randint(1,6), random.randint(1,6)
 
+
     def pay(self, amount):
         self.money -= amount
+
 
     def buy_property(self, property):
         self.properties_owned.append(property)
         self.money -= property.get_cost()
+
 
     def move(self):
         die1, die2 = self.roll()
@@ -44,13 +51,15 @@ class player():
             self.trackSpace()
         return die1, die2
 
-    def trackSpace (self):
+		
+    def track_space(self):
         if self.current_space > 39:
             self.money += 200
             self.current_space = self.current_space% 40
 
         #print(self.current_space)
         self.spaces_landed_on[self.current_space] += 1
+
 
     def process(self, card):
         if card.get_name() == "Go_To_Jail":
@@ -65,12 +74,18 @@ class player():
             self.process_property_card(card)
 
 
-    def go_to_jail (self):
+    def go_to_jail(self):
         self.current_space = 9
         self.in_jail = True
-        self.trackSpace()
+        self.track_space()
         self.turns_in_jail = 0
+	
+	
+	def advance_to_go(self):
+		self.current_space = 39
+		self.money+= 200
 
+		
     def process_property_card(self, card):
         if (card.get_owner() != None):
             self.money -= card.get_rents()[card.get_num_houses()]
@@ -79,10 +94,13 @@ class player():
 
     def draw_chance_card(self):
         print ("dummy")
-    def draw_community_chest_card(self):
+    
+	
+	def draw_community_chest_card(self):
         print("dummy")
 
-    def bankrupt (self):
+
+    def bankrupt(self):
         '''
         sum = 0
         for property in self.properties_owned:
