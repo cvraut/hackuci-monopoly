@@ -1,0 +1,16 @@
+Advance_To 39
+Advance_To 23
+Advance_To 10
+Advance_To_Nearest Utility
+Advance_To_Nearest Railroad
+Advance_To_Nearest Railroad
+Pay -50
+Get_Out_Of_Jail_Free
+Go_Back 3
+Go_To 9
+House_Thing
+Pay 15
+Advance_To 5
+Advance_To_38
+Pay x
+Pay -150
