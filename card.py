@@ -30,8 +30,15 @@ class property_card(base_card):
         self._hotel = hotel
         self._mortgage_value = mortgage_value
         self._house_cost = house_cost
-        self.hotel_cost = hotel_cost
-        
+        self._hotel_cost = hotel_cost
+    def get_hotel(self):
+        return self._hotel
+    def get_mortgage_value(self):
+        return self._mortgage_value
+    def get_house_cost(self):
+        return self._house_cost
+    def get_hotel_cost(self):
+        return self._hotel_cost
 
 
 
