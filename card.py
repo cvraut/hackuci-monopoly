@@ -1,17 +1,14 @@
 from player import player
 
 class base_card:
-    def __init__(self,name='',cost=0,house_rents=[],num_houses=0,player=player(0)):
+    def __init__(self,name='',cost=0,house_rents=[],num_houses=0):
         #self._group = group
-        self._player = player
         self._cost = cost
         self._name = name
         self._house_costs = house_rents
         self._num_houses = num_houses
-        self.player_owner = None
+        self._player_owner = None
 
-    def get_player(self):
-        return self._player
     def get_group(self):
         return self._group
     def get_cost(self):
@@ -24,12 +21,16 @@ class base_card:
         return self._num_houses
     def get_house_rents(self):
         return self._house_costs
+    def set_owner(self, player):
+        self._player_owner = player
+    def get_owner(self):
+        return self._player_owner
 
 
 
 class property_card(base_card):
-    def __init__(self,group='',name='',cost=0,house_rents=[],num_houses=0,hotel=0,mortgage_value=0,house_cost=0,player=player(0)):
-        super().__init__(name,cost,house_rents,num_houses,player)
+    def __init__(self,group='',name='',cost=0,house_rents=[],num_houses=0,hotel=0,mortgage_value=0,house_cost=0):
+        super().__init__(name,cost,house_rents,num_houses)
         self._group = group
         self._hotel = hotel
         self._mortgage_value = mortgage_value
