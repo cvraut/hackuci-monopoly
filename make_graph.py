@@ -10,7 +10,7 @@ class MakeGraph:
         self._figure_num=0
         self._barlist = []
         if x_label and x_vals and y_label and y_vals:
-            self.draw_figure(x_vals,y_vals,y_label,x_label,title, colors)
+            self.draw_figure(x_vals,y_vals,x_label,y_label,title, colors)
 
 
     def draw_figure(self,x_vals=[], y_vals=[],x_label='',y_label='',title='',colors=[]):
@@ -25,12 +25,12 @@ class MakeGraph:
             colors[i]=list[i][2]
         plt.figure(self._figure_num)
         y_pos = np.arange(len(x_vals))
-        plt.ylim(y_vals[0],y_vals[-1]+1)
-
+        plt.ylim(0,y_vals[-1]+1)
+        
         self._barlist = plt.bar(y_pos, y_vals, align='center', alpha=0.5)
-
+        
         for a in range(len(x_vals)):
-          self._barlist[a].set_color(colors[a])
+            self._barlist[a].set_color(colors[a])
         plt.xticks(y_pos, x_vals, rotation=90)
         plt.ylabel(y_label)
         plt.xlabel(x_label)
