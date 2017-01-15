@@ -3,13 +3,21 @@ import random
 
 
 class BaseCard:
-    def __init__(self, name='', cost=0, house_rents=[], num_houses=0):
+    def __init__(self, name='', cost=0, house_rents=[], num_houses=0,mortagage=False):
         # self._group = group
         self._cost = cost
         self._name = name
         self._house_costs = house_rents
         self._num_houses = num_houses
         self._player_owner = None
+        self._mortgage = mortagage
+
+    def get_mortgage(self):
+        return self._mortgage
+    def mortgage(self):
+        self._mortgage = True
+    def unmortgage(self):
+        self._mortgage = False
 
     def get_group(self):
         return self._group
@@ -35,9 +43,6 @@ class BaseCard:
     def get_owner(self):
         return self._player_owner
 
-    def set_name(self, new_name):
-        self._name = new_name
-
 
 class PropertyCard(BaseCard):
     def __init__(self, group='', name='', cost=0, house_rents=[], num_houses=0, hotel=0, mortgage_value=0,
@@ -56,6 +61,7 @@ class PropertyCard(BaseCard):
 
     def get_house_cost(self):
         return self._house_cost
+
 
 
 class special_card(BaseCard):
