@@ -43,7 +43,7 @@ class Player:
 
     def buy_house(self,num_houses,property):
         for a in range(num_houses):
-            self.money-=property.get_house_rents()[a]
+            self.money-=property.get_house_cost()[a]
         property.
 
     def move(self):

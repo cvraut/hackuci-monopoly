@@ -30,23 +30,23 @@ class ga_worker:
         if self._genes[0] == 0:
             pass
         elif self._genes[0] == 1:
-            if self.p1.get_current_space() % 10 == 8 or self.p1.get_current_space() % 10 == 0:
-                self.p1.buy_property(property)
+            if self._p1.get_current_space() % 10 == 8 or self._p1.get_current_space() % 10 == 0:
+                self._p1.buy_property(property)
         elif self._genes[0] == 2:
-            if self.p1.get_current_space() % 10 == 7 or self.p1.get_current_space() % 10 == 1:
-                self.p1.buy_property(property)
+            if self._p1.get_current_space() % 10 == 7 or self._p1.get_current_space() % 10 == 1:
+                self._p1.buy_property(property)
         elif self._genes[0] == 3:
-            if self.p1.get_current_space() % 10 == 6 or self.p1.get_current_space() % 10 == 2:
-                self.p1.buy_property(property)
+            if self._p1.get_current_space() % 10 == 6 or self._p1.get_current_space() % 10 == 2:
+                self._p1.buy_property(property)
         elif self._genes[0] == 4:
-            if self.p1.get_current_space() % 10 == 5 or self.p1.get_current_space() % 10 == 3:
-                self.p1.buy_property(property)
+            if self._p1.get_current_space() % 10 == 5 or self._p1.get_current_space() % 10 == 3:
+                self._p1.buy_property(property)
         elif self._genes[0] == 5:
-            if self.p1.get_current_space() % 10 == 8 or self.p1.get_current_space() % 10 == 0 or self.p1.get_current_space() % 10 == 7 or self.p1.get_current_space() % 10 == 1:
-                self.p1.buy_property(property)
+            if self._p1.get_current_space() % 10 == 8 or self._p1.get_current_space() % 10 == 0 or self._p1.get_current_space() % 10 == 7 or self._p1.get_current_space() % 10 == 1:
+                self._p1.buy_property(property)
         elif self._genes[0] == 6:
-            if self.p1.get_current_space() % 10 == 6 or self.p1.get_current_space() % 10 == 2 or self.p1.get_current_space() % 10 == 5 or self.p1.get_current_space() % 10 == 3:
-                self.p1.buy_property(property)
+            if self._p1.get_current_space() % 10 == 6 or self._p1.get_current_space() % 10 == 2 or self._p1.get_current_space() % 10 == 5 or self._p1.get_current_space() % 10 == 3:
+                self._p1.buy_property(property)
 
     def buy_property2(self,property):
         '''
@@ -62,7 +62,7 @@ class ga_worker:
         return gene
 
 
-    def buy_property3(self,gene):
+    def buy_property3(self,property):
         '''
         gene[2]
         0->don't buy period
@@ -73,9 +73,27 @@ class ga_worker:
         5->buy if type is already owned
         6->buy regardless
         '''
-        return gene
+        num_props, total_props = getnumberoftypes(property)
+        if self._genes[2]==0:
+            pass
+        elif self._genes[2]==1:
+            if num_props==0:
+                self._p1.buy_property(property)
+        elif self._genes[2]==2:
+            if total_props-num_props>2:
+                self._p1.buy_property(property)
+        elif self._genes[2]==3:
+            if total_props-num_props>1:
+                self._p1.buy_property(property)
+        elif self._genes[2]==4:
+            if total_props-num_props == 1:
+                self._p1.buy_property(property)
+        elif self._genes[2]==5:
+            if num_props>0:
+                self._p1.buy_property(property)
+        elif self._genes[2]==6:
+            self._p1.buy_property(property)
 
-        
     def prioritize_property(self,gene):
         '''
         0->doesn't buy
