@@ -6,13 +6,13 @@ import matplotlib.pyplot as plt
 import math
 
 class MakeGraph:
-    def __init__(self, x_vals=[], y_vals=[],y_label='',x_label=''):
+    def __init__(self, x_vals=[], y_vals=[],x_label='',y_label='', title=''):
         self._figure_num=0
         if x_label and x_vals and y_label and y_vals:
-            self.draw_figure(x_vals,y_vals,y_label,x_label)
+            self.draw_figure(x_vals,y_vals,y_label,x_label,title)
 
 
-    def draw_figure(self,x_vals=[], y_vals=[],y_label='',x_label=''):
+    def draw_figure(self,x_vals=[], y_vals=[],x_label='',y_label='',title=''):
         self._figure_num+=1
         y_vals.sort()
         plt.figure(self._figure_num)
@@ -22,7 +22,8 @@ class MakeGraph:
         plt.xticks(y_pos, x_vals, rotation=90)
         plt.ylabel(y_label)
         plt.xlabel(x_label)
+        plt.title(title)
         plt.subplots_adjust(bottom=0.40)
-
+    
     def show_plts(self):
         plt.show()

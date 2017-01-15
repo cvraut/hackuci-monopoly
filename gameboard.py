@@ -62,20 +62,30 @@ def smallest(arr):
              small = i
      return small
 
-"""
-def most_popular (arr):
+
+def most_popular (arr, names):
     figurexvals = []
     figureyvals = []
-    for i in range(len(array)):
-        figureyvals.append(100*array[i]/(sum(array)-array[29]))
-        figurexvals.append (obj.get_card(i).get_name())
+    for i in range(len(arr)):
+        figureyvals.append(100*arr[i]/(sum(arr)-arr[29]))
+        figurexvals.append (names[i].get_name())
         print("{:25s}{:10f}".format(figurexvals[i], figureyvals[i]))
     print()
-    graph = MakeGraph (figurexvals, figureyvals, "Name of Location", "Percent Landed")
+    graph = MakeGraph (figurexvals, figureyvals, "Name of Location","Percent Landed", "Most Often Landed Spots")
     graph.show_plts()
-    """
+    
 
-#def
+def makes_money (arr, cards):
+    figurexvals = []
+    #figureyvals = [][]
+    
+    for i in range(len(arr)):
+        figureyvals.append(100*arr[i]/(sum(arr)-arr[29]))
+        figurexvals.append (cards[i].get_name())
+        print("{:25s}{:10f}".format(figurexvals[i], figureyvals[i]))
+    print()
+    graph = MakeGraph (figurexvals, figureyvals, "Makes Money The Quickest", "Name of Location")
+    graph.show_plts()
 
 if __name__ == '__main__':
     array = [0]*40
@@ -90,13 +100,6 @@ if __name__ == '__main__':
 
     print()
     print()
-    figurexvals = []
-    figureyvals = []
-    for i in range(len(array)):
-        figureyvals.append(100*array[i]/(sum(array)-array[29]))
-        figurexvals.append (obj.get_card(i).get_name())
-        print("{:25s}{:10f}".format(figurexvals[i], figureyvals[i]))
-    print()
-    graph = MakeGraph (figurexvals, figureyvals, "Name of Location", "Percent Landed")
-    graph.show_plts()
-#most_popular (array)
+
+    most_popular (array, obj.cards)
+    makes_money (array, obj.cards)
