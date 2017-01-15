@@ -11,34 +11,34 @@ class Player:
         self._chance = []
         self._chest = []
         self.generate_deck()
-
-
+    
+    
     def get_money(self):
         return self.money
-
-
+    
+    
     def get_properties_owned(self):
         return self.properties_owned
-
-
+    
+    
     def get_current_space(self):
         return self.current_space
-		
-
+    
+    
     def roll(self):
         return random.randint(1, 6), random.randint(1, 6)
-
-		
-
+    
+    
+    
     def pay(self, amount):
         self.money -= amount
-
-
+    
+    
     def buy_property(self, property):
         self.properties_owned.append(property)
         self.money -= property.get_cost()
-
-
+    
+    
     def move(self):
         die1, die2 = self.roll()
         if self.in_jail:
@@ -53,26 +53,26 @@ class Player:
         else:
             self.current_space = (self.current_space + die1 + die2)
             self.track_space()
-
+        
         return die1, die2
-
-
+    
+    
     def track_space(self):
         if self.current_space > 39:
             self.money += 200
             self.current_space = self.current_space % 40
-
+        
         # print(self.current_space)
         self.spaces_landed_on[self.current_space] += 1
-
-
+    
+    
     def process(self, board):
         positionbefore = self.current_space
         if board[self.current_space].get_name() == "Go_To_Jail":
             self.go_to_jail()
         elif board[self.current_space].get_name() == "Go":
             self.money += 200
-            #self.track_space()
+        #self.track_space()
         elif board[self.current_space].get_name() == "Chance":
             #self.track_space()
             self.draw_chance_card()
@@ -89,7 +89,7 @@ class Player:
             pass
         elif board[self.current_space].get_name() == "Luxury_Tax":
             self.pay (75)
-            #self.track_space()
+        #self.track_space()
         else:
             #self.track_space()
             self.process_property_card(board[self.current_space])
@@ -161,9 +161,9 @@ class Player:
                     self.money += 200
 
             self.track_space()
-
-            #TODO Calculate the new price of rent based on the card
-
+        
+        #TODO Calculate the new price of rent based on the card
+        
         drawn_card = self._chance.pop(0)
         self._chance.append(drawn_card)
 
@@ -200,10 +200,10 @@ class Player:
 
     def bankrupt(self):
         '''
-        sum = 0
-        for property in self.properties_owned:
+            sum = 0
+            for property in self.properties_owned:
             sum += property.get_cost()/2
-        '''
+            '''
         if (self.money < 0):
             return True
         return False
@@ -221,15 +221,15 @@ class Player:
 
     def generate_deck(self):
         f = open("ChanceCards.txt", "r")
-
+        
         for line in f:
             self._chance.append(line.rstrip().split())
-
+    
         random.shuffle(self._chance)
-
+        
         f = open("CommunityChest.txt", "r")
-		
+        
         for line in f:
             self._chest.append(line.rstrip().split())
-
+        
         random.shuffle(self._chest)
