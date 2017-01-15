@@ -33,7 +33,9 @@ class Player:
     def pay(self, amount):
         self.money -= amount
     
-    
+    def can_buy_property(self,property):
+        return (property.get_owner() == None and property.get_cost()>0),property
+
     def buy_property(self, property):
         self.properties_owned.append(property)
         self.money -= property.get_cost()
