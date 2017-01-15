@@ -18,6 +18,7 @@
     * CommunityChest.txt
     * Properties.txt
 * Run gameboard.py to generate the graphs
+
 ## To do list:
 * Genetic Algorithm:
     * Add the fitness test
