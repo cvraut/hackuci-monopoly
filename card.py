@@ -58,7 +58,6 @@ class PropertyCard(BaseCard):
         return self._house_cost
 
 
-
 class special_card(BaseCard):
     def __init__(self, name):
         self._name = name

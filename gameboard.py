@@ -77,7 +77,7 @@ def most_popular (arr, names, colors):
 
 def makes_money (arr, cards, colors):
     figurexvals = []
-    #figureyvals = [][]
+    figureyvals = []
     
     for i in range(len(arr)):
         figureyvals.append(100*arr[i]/(sum(arr)-arr[29]))

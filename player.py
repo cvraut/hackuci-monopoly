@@ -58,7 +58,6 @@ class Player:
             self.money += 200
             self.current_space = self.current_space % 40
 
-        # print(self.current_space)
         self.spaces_landed_on[self.current_space] += 1
 
     def process(self, board):
@@ -67,26 +66,19 @@ class Player:
             self.go_to_jail()
         elif board[self.current_space].get_name() == "Go":
             self.money += 200
-            #self.track_space()
         elif board[self.current_space].get_name() == "Chance":
-            #self.track_space()
             self.draw_chance_card()
         elif board[self.current_space].get_name() == "Community_Chest":
-            #self.track_space()
             self.draw_community_chest_card()
         elif board[self.current_space].get_name() == "Income_Tax":
-            #self.track_space()
             self.money -= 200
         elif board[self.current_space].get_name() == "Jail_Cell":
             pass
         elif board[self.current_space].get_name() == "Free_Parking":
-            #self.track_space()
             pass
         elif board[self.current_space].get_name() == "Luxury_Tax":
             self.pay (75)
-            #self.track_space()
         else:
-            #self.track_space()
             self.process_property_card(board[self.current_space])
         if (positionbefore != self.current_space):
             self.process (board)
