@@ -23,6 +23,5 @@
 * Genetic Algorithm:
     * Add the fitness test
     * Add the crossover functions
-    * Connect individual chromosomes to our Player class 
-	
+    * Connect attributes of Player objects to Individuals; i.e. buying, selling, etc.
 
