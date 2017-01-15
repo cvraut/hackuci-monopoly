@@ -29,7 +29,7 @@ class GameBoard:
         elif (arr[0] == "Railroad"):
             newcard = BaseCard(arr[1], 200, [25, 50, 100, 200], 0)
         elif (arr[0] == "Utility"):
-            newcard = BaseCard(arr[1], 150, [4, 10], 0)
+            newcard = BaseCard(arr[1], 150, [4*7, 10*7], 0)
                 
         self.cards.append(newcard)
 
@@ -58,6 +58,8 @@ def smallest(arr):
      return small
 
 
+
+
 def most_popular (arr, names, colors):
     figurexvals = []
     figureyvals = []
@@ -66,9 +68,13 @@ def most_popular (arr, names, colors):
         figurexvals.append (names[i].get_name())
         print("{:25s}{:10f}".format(figurexvals[i], figureyvals[i]))
     print()
-    graph = MakeGraph (figurexvals, figureyvals, "Name of Location","Percent Landed", "Most Often Landed Spots", colors)
+    graph = MakeGraph ()
+    graph.draw_figure_no_sort(figurexvals, figureyvals, "Name of Location","Percent Landed", "Most Often Landed Spots", colors)
     graph.show_plts()
     
+
+
+
 
 def makes_money (arr, cards, colors):
     figurexvals = []
@@ -86,20 +92,48 @@ def makes_money (arr, cards, colors):
     graph = MakeGraph (figurexvals, figureyvals, "Name of Location", "Dice Rolls to Make Money Back", "Which Single Properties Earn Their Cost Back Longest", colors)
     graph.show_plts()
 
+
+
+
 def makes_money_all_properties(arr, cards, colors):
     figurexvals = []
     figureyvals = []
-    
+    for numhouses in range (5):
+        for i in range(len(arr)):
+            #print (type(cards [i]))
+            if (cards[i].get_cost() > 0 and type(cards[i]) == PropertyCard):
+                #print (cards[i].get_name())
+                totalcost = cards[i].get_cost()+(numhouses+1)*cards[i].get_house_cost()
+                figureyvals.append(totalcost/(int(cards[i].get_house_rents()[numhouses+1]))/arr[i]*(sum(arr)-arr[29]))
+                figurexvals.append (cards[i].get_name()+" " + str(numhouses+1)+ " H.")
+                print("{:25s}{:10f}".format(figurexvals[-1], figureyvals[-1]))
+        print()
+    graph = MakeGraph ()
+    graph.draw_figure_no_sort(figurexvals, figureyvals, "Name of Location and Number of Houses", "Dice Rolls to Make Money Back", "Optimal House Strategy", colors, 100)
+    graph.show_plts()
+
+#def print_into_file (xvals, yvals):
+
+
+
+def most_revenue(arr, cards, colors):
+    figurexvals = []
+    figureyvals = []
     for i in range(len(arr)):
-        print (type(cards [i]))
+        #print (type(cards [i]))
         if (cards[i].get_cost() > 0 and type(cards[i]) == PropertyCard):
-            print (cards[i].get_name())
-            figureyvals.append(cards[i].get_cost()/(int(cards[i].get_house_rents()[0])*arr[i]/(sum(arr)-arr[29])))
+            #print (cards[i].get_name())
+            figureyvals.append(int(cards[i].get_house_rents()[0])*arr[i]/(sum(arr)-arr[29]))
             figurexvals.append (cards[i].get_name())
             print("{:25s}{:10f}".format(figurexvals[-1], figureyvals[-1]))
     print()
-    graph = MakeGraph (figurexvals, figureyvals, "Name of Location", "Dice Rolls to Make Money Back", "Optimal Train Strategy", colors)
+    graph = MakeGraph(figurexvals, figureyvals, "Name of Location", "Money Per Dice Roll", "Most Money Per Dice Roll On A Single Property", colors)
     graph.show_plts()
+
+#def print_into_file (xvals, yvals):
+
+
+
 
 if __name__ == '__main__':
     array = [0]*40
@@ -132,6 +166,12 @@ if __name__ == '__main__':
     color = ["brown","brown","black", "cyan","cyan", "cyan", "magenta", "black", "magenta", "magenta", "black", "orange","orange", "orange","red", "red","red","black","yellow", "yellow", "black", "yellow", "green", "green", "green","black", "blue","blue"]
 
     makes_money (array, obj.cards, color)
-    color = ["brown","brown", "cyan","cyan", "cyan", "magenta","magenta", "magenta", "orange","orange", "orange","red", "red","red","yellow", "yellow", "yellow", "green", "green", "green","blue","blue"]
+
+
+    color = ["brown","brown", "cyan","cyan", "cyan", "magenta","magenta", "magenta", "orange","orange", "orange","red", "red","red","yellow", "yellow", "yellow", "green", "green", "green","blue","blue"]*5
+ 
+    most_revenue(array, obj.cards, color)
+
 
     makes_money_all_properties (array, obj.cards, color)
+

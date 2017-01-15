@@ -27,7 +27,7 @@ class MakeGraph:
             colors[i]=list[i][2]
         plt.figure(self._figure_num)
         y_pos = np.arange(len(x_vals))
-        plt.ylim(0,y_vals[-1]+1)
+        plt.ylim(0,max(y_vals)+0.2)
         
         self._barlist = plt.bar(y_pos, y_vals, align='center', alpha=0.5)
         
@@ -38,6 +38,29 @@ class MakeGraph:
         plt.xlabel(x_label)
         plt.title(title)
         plt.subplots_adjust(bottom=0.40)
+    
+    def draw_figure_no_sort(self,x_vals=[], y_vals=[],x_label='',y_label='',title='',colors=[], height=0):
+        self._figure_num+=1
+        
+        plt.figure(self._figure_num)
+        y_pos = np.arange(len(x_vals))
+        plt.ylim(0,y_vals[-1]+1)
+        if (height != 0):
+            plt.ylim (0,height)
+        else:
+            plt.ylim (0, max(y_vals)+0.2)
+        
+        self._barlist = plt.bar(y_pos, y_vals, align='center', alpha=0.5)
+        
+        for a in range(len(x_vals)):
+            self._barlist[a].set_color(colors[a])
+        plt.xticks(y_pos, x_vals, rotation=90)
+        plt.ylabel(y_label)
+        plt.xlabel(x_label)
+        plt.title(title)
+        plt.subplots_adjust(bottom=0.40)
+    
+    
     
     def show_plts(self):
         plt.show()
