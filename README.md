@@ -7,7 +7,7 @@
 	* card.py
 	* ChanceCards.txt
 	* CommunityChest.txt
-	* Propertiestxt
+	* Properties.txt
 * Run gameboard.py to generate the graphs
 
 
