@@ -1,6 +1,7 @@
 from card import BaseCard
 from card import PropertyCard
 from card import special_card
+from make_graph import MakeGraph
 from player import Player
 
 
@@ -61,11 +62,24 @@ def smallest(arr):
              small = i
      return small
 
+"""
+def most_popular (arr):
+    figurexvals = []
+    figureyvals = []
+    for i in range(len(array)):
+        figureyvals.append(100*array[i]/(sum(array)-array[29]))
+        figurexvals.append (obj.get_card(i).get_name())
+        print("{:25s}{:10f}".format(figurexvals[i], figureyvals[i]))
+    print()
+    graph = MakeGraph (figurexvals, figureyvals, "Name of Location", "Percent Landed")
+    graph.show_plts()
+    """
 
+#def
 
 if __name__ == '__main__':
     array = [0]*40
-    for b in range (10000):
+    for b in range (1000):
         obj = GameBoard()
         player1 = Player(1500)
         obj.players.append(player1)
@@ -76,7 +90,13 @@ if __name__ == '__main__':
 
     print()
     print()
+    figurexvals = []
+    figureyvals = []
     for i in range(len(array)):
-
-        print("{:25s}{:10f}".format(obj.get_card(i).get_name(), 100* array[i] / (sum(array)-array[29])))
-    print(smallest(array))
+        figureyvals.append(100*array[i]/(sum(array)-array[29]))
+        figurexvals.append (obj.get_card(i).get_name())
+        print("{:25s}{:10f}".format(figurexvals[i], figureyvals[i]))
+    print()
+    graph = MakeGraph (figurexvals, figureyvals, "Name of Location", "Percent Landed")
+    graph.show_plts()
+#most_popular (array)
