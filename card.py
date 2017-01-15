@@ -56,6 +56,9 @@ class BaseCard:
     
     def get_house_rents(self):
         return self._house_costs
+
+    def set_num_houses(self,num_houses):
+        self._num_houses = num_houses
     
     
     def set_owner(self, player):

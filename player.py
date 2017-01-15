@@ -15,8 +15,8 @@ class Player:
     
     def get_money(self):
         return self.money
-    
-    
+
+
     def get_properties_owned(self):
         return self.properties_owned
     
@@ -40,7 +40,12 @@ class Player:
         self.properties_owned.append(property)
         self.money -= property.get_cost()
     
-    
+
+    def buy_house(self,num_houses,property):
+        for a in range(num_houses):
+            self.money-=property.get_house_rents()[a]
+        property.
+
     def move(self):
         die1, die2 = self.roll()
         if self.in_jail:
