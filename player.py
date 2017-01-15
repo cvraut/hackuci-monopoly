@@ -15,8 +15,8 @@ class Player:
     
     def get_money(self):
         return self.money
-
-
+    
+    
     def get_properties_owned(self):
         return self.properties_owned
     
@@ -40,12 +40,7 @@ class Player:
         self.properties_owned.append(property)
         self.money -= property.get_cost()
     
-
-    def buy_house(self,num_houses,property):
-        for a in range(num_houses):
-            self.money-=property.get_house_rents()[a]
-        property.
-
+    
     def move(self):
         die1, die2 = self.roll()
         if self.in_jail:
@@ -115,9 +110,28 @@ class Player:
         self.current_space = 39
         self.money += 200
 
+    def num_in_book(self, group):
+        num = 0
+        total = 0
+        for property in self.get_properties_owned():
+            if property.get_group() == group:
+                if group == 'Purple' or group == 'Blue':
+                    total = 2
+                    num += 1
+                else:
+                    total = 3
+                    num += 1
+        return num, total
+
 
     def process_property_card(self, card):
         if (card.get_owner() != None):
+            num, total = self.num_in_book(card.get_group())
+
+            if num == total:
+                self.money -= card.get_rents()[card.get_num_houses()]
+                card.get_owner().money += card.get_rents()[card.get_num_houses()]
+
             self.money -= card.get_rents()[card.get_num_houses()]
             card.get_owner().money += card.get_rents()[card.get_num_houses()]
 
