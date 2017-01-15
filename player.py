@@ -62,6 +62,7 @@ class Player:
             self.money += 200
             self.current_space = self.current_space % 40
 
+        # print(self.current_space)
         self.spaces_landed_on[self.current_space] += 1
 
 
@@ -71,19 +72,26 @@ class Player:
             self.go_to_jail()
         elif board[self.current_space].get_name() == "Go":
             self.money += 200
+            #self.track_space()
         elif board[self.current_space].get_name() == "Chance":
+            #self.track_space()
             self.draw_chance_card()
         elif board[self.current_space].get_name() == "Community_Chest":
+            #self.track_space()
             self.draw_community_chest_card()
         elif board[self.current_space].get_name() == "Income_Tax":
+            #self.track_space()
             self.money -= 200
         elif board[self.current_space].get_name() == "Jail_Cell":
             pass
         elif board[self.current_space].get_name() == "Free_Parking":
+            #self.track_space()
             pass
         elif board[self.current_space].get_name() == "Luxury_Tax":
             self.pay (75)
+            #self.track_space()
         else:
+            #self.track_space()
             self.process_property_card(board[self.current_space])
         if (positionbefore != self.current_space):
             self.process (board)
@@ -189,6 +197,10 @@ class Player:
         self.money +=property.get_cost()
         property.mortgage()
 
+    def mortgage_property(self,property):
+        self.money +=property.get_cost()
+        property.mortgage()
+
 
     def bankrupt(self):
         '''
@@ -200,6 +212,14 @@ class Player:
             return True
         return False
 
+    def get_assests(self):
+        total_money = self.money
+        for property in self.properties_owned:
+            if not property.get_mortgage():
+                total_money+=property.get_cost()
+                for a in range(property.get_num_houses):
+                    total_money+=property.get_house_rents()[a]
+        return total_money
 
     def generate_deck(self):
         f = open("ChanceCards.txt", "r")

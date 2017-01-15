@@ -21,7 +21,19 @@ class BaseCard:
     def unmortgage(self):
         self._mortgage = False
 
+    
+    def get_mortgage(self):
+        return self._mortgage
+    
+    
+    def mortgage(self):
+        self._mortgage = True
+    
+    
+    def unmortgage(self):
+        self._mortgage = False
 
+    
     def get_group(self):
         return self._group
 
@@ -49,8 +61,10 @@ class BaseCard:
     def set_owner(self, player):
         self._player_owner = player
 
+
     def set_name(self, new_name):
         self._name = new_name
+
 
     def get_owner(self):
         return self._player_owner

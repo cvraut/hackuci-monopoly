@@ -72,6 +72,7 @@ def most_popular (arr, names, colors):
     graph = MakeGraph (figurexvals, figureyvals, "Name of Location","Percent Landed", "Most Often Landed Spots", colors)
     graph.show_plts()
 
+
 def makes_money (arr, cards, colors):
     figurexvals = []
     figureyvals = []
