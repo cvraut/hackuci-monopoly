@@ -1,4 +1,4 @@
-Advance 39
+Advance_To 39
 Pay -200
 Pay 50
 Pay -50

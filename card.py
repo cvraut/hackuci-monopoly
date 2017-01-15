@@ -1,4 +1,4 @@
-from player import Player
+
 import random
 
 
@@ -53,6 +53,7 @@ class PropertyCard(BaseCard):
 
     def get_house_cost(self):
         return self._house_cost
+
 
 
 class special_card(BaseCard):

@@ -11,6 +11,6 @@ Go_To_Jail
 House_Thing
 Pay 15
 Advance_To 5
-Advance_To_38
-Pay x
+Advance_To 38
+Pay 100
 Pay -150
