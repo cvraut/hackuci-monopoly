@@ -19,10 +19,10 @@ class MakeGraph:
         y_pos = np.arange(len(x_vals))
         plt.ylim(y_vals[0],y_vals[-1]+1)
         plt.bar(y_pos, y_vals, align='center', alpha=0.5)
-        plt.xticks(y_pos, x_vals)
+        plt.xticks(y_pos, x_vals, rotation=90)
         plt.ylabel(y_label)
-        plt.title(x_label)
-
+        plt.xlabel(x_label)
+        plt.subplots_adjust(bottom=0.40)
 
     def show_plts(self):
         plt.show()
