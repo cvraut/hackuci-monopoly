@@ -12,7 +12,8 @@ class ga_worker:
 			for i in range(len(gene)):
 				gene[i] = (random.randint(0,1))
 		print(self._genes)
-	
+
+
 	def buy_property1(self,gene):
 		'''returns a # dictating what & how much to buy:
         0->don't buy
@@ -29,7 +30,8 @@ class ga_worker:
 			if self.player.get_current_space() % 10 >= 8:
 				pass
 		return gene
-	
+
+
 	def buy_property2(self,gene):
 		'''
         0->don't buy
@@ -41,7 +43,8 @@ class ga_worker:
         6->buy property regardless
         '''
 		return gene
-	
+
+
 	def buy_property3(self,gene):
 		'''
         0->don't buy period
@@ -53,6 +56,7 @@ class ga_worker:
         6->buy regardless
         '''
 		return gene
+
 		
 	def prioritize_property(self,gene):
 		'''
@@ -96,7 +100,8 @@ class ga_worker:
 			pass
 		
 		return gene
-    
+
+
 	def buy_house2(self,gene):
 		'''
         0->don't buy
@@ -212,6 +217,7 @@ class ga_worker:
 			return self.sell2(gene), self.sell3(gene)
 		elif gene == 6:
 			return self.sell1(gene), self.sell3(gene)
+
 			
 	def risk(self,gene):
 		'''
@@ -224,4 +230,6 @@ class ga_worker:
         6->ok with $0
         '''
 		return gene
-ga_worker()
+
+if __name__ == '__main__':
+	ga_worker()
