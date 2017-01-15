@@ -98,7 +98,7 @@ if __name__ == '__main__':
             for c in range (len(player1.spaces_landed_on)):
                 array[c]+=player1.spaces_landed_on[c]
 
-    color = ["brown", "gray", "brown", "gray", "black", "cyan", "gray", "cyan", "cyan", "gray", "magenta", "black", "magenta", "magenta", "black", "orange","gray","orange","orange", "gray","red","gray", "red","red","black","yellow", "yellow", "black", "yellow", "gray", "green", "green", "gray","green","black", "gray", "blue", "grey", "blue"]
+    color = ["brown", "gray", "brown", "gray", "black", "cyan", "gray", "cyan", "cyan", "gray", "magenta", "black", "magenta", "magenta", "black", "orange","gray","orange","orange", "gray","red","gray", "red","red","black","yellow", "yellow", "black", "yellow", "gray", "green", "green", "gray","green","black", "gray", "blue", "grey", "blue","tan"]
 
     print()
     print()
