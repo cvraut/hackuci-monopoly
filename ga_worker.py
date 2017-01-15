@@ -73,7 +73,7 @@ class ga_worker:
         5->buy if type is already owned
         6->buy regardless
         '''
-        num_props, total_props = getnumberoftypes(property)
+        num_props, total_props = self._p1.num_in_book(property.group())
         if self._genes[2]==0:
             pass
         elif self._genes[2]==1:
@@ -94,7 +94,7 @@ class ga_worker:
         elif self._genes[2]==6:
             self._p1.buy_property(property)
 
-    def prioritize_property(self,gene):
+    def prioritize_property(self,property):
         '''
         0->doesn't buy
         1->buys using 1st method
@@ -104,24 +104,31 @@ class ga_worker:
         5->buys using combo of 2&3
         6->buys using combo of 1&3
         '''
-        if gene == 0:
-            return 0,0
-        elif gene == 1:
-            return self.buy_property1(gene),0
-        elif gene == 2:
-            return self.buy_property2(gene),0
-        elif gene == 3:
-            return self.buy_property3(gene),0
-        elif gene == 4:
-            return self.buy_property1(gene),self.buy_property2(gene)
-        elif gene == 5:
-            return self.buy_property2(gene),self.buy_property3(gene)
-        else:
-            return self.buy_property1(gene),self.buy_property3(gene)
+        if self._genes[3] == 0:
+            pass
+        elif self._genes[3] == 1:
+            self.buy_property1(property)
+        elif self._genes[3] == 2:
+            self.buy_property2(property)
+        elif self._genes[3] == 3:
+            self.buy_property3(property)
+        elif self._genes[3] == 4:
+            self.buy_property1(property)
+            if property.get_owner() != self._p1:
+                self.buy_property2(property)
+        elif self._genes[3] == 5:
+            self.buy_property2(property)
+            if property.get_owner() != self._p1:
+                self.buy_property3(property)
+        elif self._genes[3] == 6:
+            self.buy_property1(property)
+            if property.get_owner() != self._p1:
+                self.buy_property3(property)
     
     
-    def buy_house1(self,gene):
+    def buy_house1(self,property):
         '''
+        gene[4]
         0->don't buy
         1->don't buy until cost is 15% of bank
         2->don't buy until cost is 30% of bank
@@ -130,16 +137,24 @@ class ga_worker:
         5->don't buy until cost is 75% of bank
         6->don't buy until cost is 90% of bank
         '''
-        if gene == 0:
-            return 0
-        elif gene == 1:
+        if self._genes[4] == 0:
             pass
-        
-        return gene
+        elif self._genes[4] == 1:
+            self._p1.buy_houses(int(self._p1.get_money()*.10),property)
+        elif self._genes[4] == 2:
+            self._p1.buy_houses(int(self._p1.get_money() * .25),property)
+        elif self._genes[4] == 3:
+            self._p1.buy_houses(int(self._p1.get_money() * .4),property)
+        elif self._genes[4] == 4:
+            self._p1.buy_houses(int(self._p1.get_money() * .55),property)
+        elif self._genes[4] == 5:
+            self._p1.buy_houses(int(self._p1.get_money() * .7),property)
+        elif self._genes[4] == 6:
+            self._p1.buy_houses(int(self._p1.get_money() * .85),property)
 
-
-    def buy_house2(self,gene):
+    def buy_house2(self):
         '''
+        gene[5]
         0->don't buy
         1->buy if players are within 2 squares
         2->buy if players are within 4 squares
@@ -148,11 +163,26 @@ class ga_worker:
         5->buy if players are within 10 squares
         6->buy if players are within 12 squares
         '''
-        return gene
+        if self._genes[5] == 0:
+            pass
+        elif self._genes[5] == 1:
+            if not self._p1.set_to_oppenent(2) == None:
+                self.buy_house1(self._p1.set_to_oppenent(2))
+        elif self._genes[5] == 2:
+            self._p1.buy_houses(int(self._p1.get_money() * .25), property)
+        elif self._genes[5] == 3:
+            self._p1.buy_houses(int(self._p1.get_money() * .4), property)
+        elif self._genes[5] == 4:
+            self._p1.buy_houses(int(self._p1.get_money() * .55), property)
+        elif self._genes[5] == 5:
+            self._p1.buy_houses(int(self._p1.get_money() * .7), property)
+        elif self._genes[5] == 6:
+            self._p1.buy_houses(int(self._p1.get_money() * .85), property)
     
     
-    def buy_house3(self,gene):
+    def buy_house3(self,property):
         '''
+        gene[6]
         0->don't buy
         1->buy if there are zero houses on property
         2->buy if only 1 house on property
@@ -161,7 +191,25 @@ class ga_worker:
         5->buy if at most 4 houses on property
         6->buy regardless
         '''
-        return gene
+        if self._genes[6]==0:
+            pass
+        elif self._genes[6]==1:
+            if property.get_num_houses() == 0:
+                self.buy_house1(property)
+        elif self._genes[6] == 2:
+            if property.get_num_houses() < 2:
+                self.buy_house1(property)
+        elif self._genes[6] == 3:
+            if property.get_num_houses() <3:
+                self.buy_house1(property)
+        elif self._genes[6] == 4:
+            if property.get_num_houses() < 4:
+                self.buy_house1(property)
+        elif self._genes[6] == 5:
+            if property.get_num_houses() < 5:
+                self.buy_house1(property)
+        elif self._genes[6] == 6:
+                self.buy_house1(property)
     
     
     def prioritize_house(self,gene):
@@ -175,19 +223,22 @@ class ga_worker:
         6->buys using combo of 1&3
         '''
         if gene == 0:
-            return 0, 0
+            pass
         elif gene == 1:
-            return self.buy_house1(gene), 0
+            self.buy_house1(property)
         elif gene == 2:
-            return self.buy_house2(gene), 0
+            self.buy_house2()
         elif gene == 3:
-            return self.buy_house3(gene), 0
+            self.buy_house3(property)
         elif gene == 4:
-            return self.buy_house1(gene), self.buy_house2(gene)
+            self.buy_house1(property)
+            self.buy_house2()
         elif gene == 5:
-            return self.buy_house2(gene), self.buy_house3(gene)
+            self.buy_house2()
+            self.buy_house3(property)
         elif gene == 6:
-            return self.buy_house1(gene), self.buy_house3(gene)
+            self.buy_house1(property)
+            self.buy_house3(property)
     
     
     def sell1(self,gene):
