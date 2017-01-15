@@ -37,8 +37,4 @@ Special Chance
 Property Park_Place Blue 35 175 500 1100 1300 1500 350 200
 Special Luxury_Tax
 Property Boardwalk Blue 50 200 600 1400 1700 2000 400 200
-<<<<<<< HEAD
 Special Go
-=======
-Special Go
->>>>>>> fd67316fbdf4aefa14449930a541d7384d73df38
