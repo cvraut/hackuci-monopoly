@@ -6,13 +6,13 @@ import matplotlib.pyplot as plt
 import math
 
 class MakeGraph:
-    def __init__(self, x_vals=[], y_vals=[],x_label='',y_label='', title=''):
+    def __init__(self, x_vals=[], y_vals=[],x_label='',y_label='', title='',colors=[]):
         self._figure_num=0
         if x_label and x_vals and y_label and y_vals:
-            self.draw_figure(x_vals,y_vals,y_label,x_label,title)
+            self.draw_figure(x_vals,y_vals,y_label,x_label,title, colors)
 
 
-    def draw_figure(self,x_vals=[], y_vals=[],x_label='',y_label='',title=''):
+    def draw_figure(self,x_vals=[], y_vals=[],x_label='',y_label='',title='',colors=[]):
         self._figure_num+=1
         y_vals.sort()
         plt.figure(self._figure_num)

@@ -63,7 +63,7 @@ def smallest(arr):
      return small
 
 
-def most_popular (arr, names):
+def most_popular (arr, names, colors):
     figurexvals = []
     figureyvals = []
     for i in range(len(arr)):
@@ -71,11 +71,11 @@ def most_popular (arr, names):
         figurexvals.append (names[i].get_name())
         print("{:25s}{:10f}".format(figurexvals[i], figureyvals[i]))
     print()
-    graph = MakeGraph (figurexvals, figureyvals, "Name of Location","Percent Landed", "Most Often Landed Spots")
+    graph = MakeGraph (figurexvals, figureyvals, "Name of Location","Percent Landed", "Most Often Landed Spots", colors)
     graph.show_plts()
     
 
-def makes_money (arr, cards):
+def makes_money (arr, cards, colors):
     figurexvals = []
     #figureyvals = [][]
     
@@ -84,7 +84,7 @@ def makes_money (arr, cards):
         figurexvals.append (cards[i].get_name())
         print("{:25s}{:10f}".format(figurexvals[i], figureyvals[i]))
     print()
-    graph = MakeGraph (figurexvals, figureyvals, "Makes Money The Quickest", "Name of Location")
+    graph = MakeGraph (figurexvals, figureyvals, "Name of Location", "Money Per Dice Roll", "Which Properties Make Money The Fastest", colors)
     graph.show_plts()
 
 if __name__ == '__main__':
@@ -98,8 +98,10 @@ if __name__ == '__main__':
             for c in range (len(player1.spaces_landed_on)):
                 array[c]+=player1.spaces_landed_on[c]
 
+    color = ["brown", "gray", "brown", "gray", "black", "cyan", "gray", "cyan", "cyan", "gray", "magenta", "black", "magenta", "magenta", "black", "orange","gray","orange","orange", "gray","red","gray", "red","red","black","yellow", "yellow", "black", "yellow", "gray", "green", "green", "gray","green","black", "gray", "blue", "grey", "blue"]
+
     print()
     print()
 
-    most_popular (array, obj.cards)
-    makes_money (array, obj.cards)
+    most_popular (array, obj.cards, color)
+    makes_money (array, obj.cards, color)
