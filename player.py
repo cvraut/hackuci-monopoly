@@ -205,6 +205,14 @@ class Player:
             return True
         return False
 
+    def get_assests(self):
+        total_money = self.money
+        for property in self.properties_owned:
+            if not property.get_mortgage():
+                total_money+=property.get_cost()
+                for a in range(property.get_num_houses):
+                    total_money+=property.get_house_rents()[a]
+        return total_money
 
     def generate_deck(self):
 
