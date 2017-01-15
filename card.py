@@ -35,6 +35,9 @@ class BaseCard:
     def get_owner(self):
         return self._player_owner
 
+    def set_name(self, new_name):
+        self._name = new_name
+
 
 class PropertyCard(BaseCard):
     def __init__(self, group='', name='', cost=0, house_rents=[], num_houses=0, hotel=0, mortgage_value=0,

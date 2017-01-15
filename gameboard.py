@@ -103,5 +103,15 @@ if __name__ == '__main__':
     print()
     print()
 
+    for card in obj.cards:
+        card.set_name(card.get_name().replace("_", " "))
+
+    obj.cards[1].set_name("Community Chest #1")
+    obj.cards[6].set_name("Chance #1")
+    obj.cards[16].set_name("Community Chest #2")
+    obj.cards[21].set_name("Chance #2")
+    obj.cards[32].set_name("Community Chest #3")
+    obj.cards[35].set_name("Chance #3")
+
     most_popular (array, obj.cards, color)
     makes_money (array, obj.cards, color)
