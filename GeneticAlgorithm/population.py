@@ -17,7 +17,7 @@ class Population:
         return self._individuals[index]
     
     
-    def get_fitter(self):
+    def get_fittest(self):
         fittest = self._individuals[0]
         for individual in self._indivuals:
             if(fittest.get_fitness() <= individual.get_fitness()):
@@ -26,8 +26,7 @@ class Population:
     
     
     def size(self):
-        return len(self._individuals)
-    
+        return len(self._individuals)  
     
 class Individual:
     def __init__(self):
@@ -50,9 +49,21 @@ class Individual:
         self._fitness = 0
     
     
+    def get_fitness(self):
+        if(fitness == 0 ):
+            fitness = FitnessCalc.get_fitness(self)
+        return fitness
+
+        
     def gene_as_string(self):
         gene_string += (str(self.get_gene(i)) for i in range(self._gene_length))
-        return gene_string
-    
-    
+        return gene_string 
+
+class Algorithm:
+    def __init__(self):
+        pass
+
+class FitnessCalc:
+    def __init__(self):
+        pass
     
