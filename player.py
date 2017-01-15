@@ -39,6 +39,18 @@ class Player:
     def buy_property(self, property):
         self.properties_owned.append(property)
         self.money -= property.get_cost()
+
+    def buy_houses(self, num, group):
+        book = self.get_book_properties(group)
+
+        i = 0
+        index = 0
+        while i < num:
+            if self._money >= book[index].get_house_cost():
+                book[index].increment_num_houses()
+                self.money -= book[index].get_house_cost()
+                index = (index+1)%len(book)
+            i+=1
     
     
     def move(self):
@@ -122,6 +134,15 @@ class Player:
                     total = 3
                     num += 1
         return num, total
+
+    def get_book_properties(self, group):
+        properties = []
+        for property in self.get_properties_owned():
+            if property.group() == group:
+                properties.append(property)
+
+        return properties
+
 
 
     def process_property_card(self, card):
