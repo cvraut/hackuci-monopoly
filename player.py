@@ -125,6 +125,15 @@ class Player:
             if before > self.current_space:
                 self.money += 200
             self.track_space()
+        elif (self._chance[0][0] == "House_Thing"):
+            houses = 0
+            hotels = 0
+            for property in self.properties_owned:
+                if (property.get_group() != "" and property.get_hotel() > 0):
+                    hotels = 1
+                elif (property.get_group() != "" and property.get_num_houses() > 0):
+                    houses = property.get_num_houses()
+            self.pay(100 * hotels + 25 * houses)
         elif self._chance[0][0] == "Advance_To_Nearest":
             if self._chance[0][1] == "Railroad":
                 if self.current_space == 6:
@@ -200,11 +209,11 @@ class Player:
             self._chance.append(line.strip().split())
 
         random.shuffle(self._chance)
-        print(self._chance)
+        #print(self._chance)
 
         f = open("CommunityChest.txt", "r")
         for line in f:
             self._chest.append(line.strip().split())
 
         random.shuffle(self._chest)
-        print(self._chest)
+        #print(self._chest)

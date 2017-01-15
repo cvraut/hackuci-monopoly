@@ -10,7 +10,7 @@ Go_Back 3
 Go_To_Jail
 House_Thing
 Pay 15
-Advance_To 5
+Advance_To 4
 Advance_To 38
 Pay 100
 Pay -150

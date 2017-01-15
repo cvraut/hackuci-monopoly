@@ -64,15 +64,19 @@ def smallest(arr):
 
 
 if __name__ == '__main__':
-    obj = GameBoard()
-    player1 = Player(1500)
-    obj.players.append(player1)
-    for i in range(1000000):
-        obj.compute_round()
+    array = [0]*40
+    for b in range (10000):
+        obj = GameBoard()
+        player1 = Player(1500)
+        obj.players.append(player1)
+        for i in range(100):
+            obj.compute_round()
+            for c in range (len(player1.spaces_landed_on)):
+                array[c]+=player1.spaces_landed_on[c]
 
     print()
     print()
-    for i in range(len(player1.spaces_landed_on)):
+    for i in range(len(array)):
 
-        print(100* player1.spaces_landed_on[i] / (sum(player1.spaces_landed_on)-player1.spaces_landed_on[29]))
-    print(smallest(player1.spaces_landed_on))
+        print("{:25s}{:10f}".format(obj.get_card(i).get_name(), 100* array[i] / (sum(array)-array[29])))
+    print(smallest(array))
