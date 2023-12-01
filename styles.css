@@ -1,0 +1,29 @@
+.basic-button{
+    
+}
+
+.pretty-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 15px 20px;
+  cursor: pointer;
+}
+
+#space{
+height: 300px;
+}
+
+.footer {
+  position:fixed;
+   left:0px;
+   bottom:0px;
+   height:160px;
+   width:100%;
+   background:#999;
+}
